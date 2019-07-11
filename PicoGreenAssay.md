@@ -18,9 +18,7 @@ The picoGreen Quantification Assay provides an easy and relatively inexpensive w
    * 20X TE (stored at room temp)
 
 
-https://github.com/adowneywall/Tutorials/blob/master/img/Gen5%203.03%20-%20Experiment1_%20%5Bcreated%20from%20dsDNA%20picogreen%20assay%20full%20plate.prt%5D%207_5_2019%2010_44_00%20AM.mp4
-
-[logo]:https://github.com/adowneywall/Tutorials/blob/master/img/Gen5%203.03%20-%20Experiment1_%20%5Bcreated%20from%20dsDNA%20picogreen%20assay%20full%20plate.prt%5D%207_5_2019%2010_44_00%20AM.mp4
+![](https://github.com/adowneywall/Tutorials/blob/master/img/Gen5%203.03%20-%20Experiment1_%20%5Bcreated%20from%20dsDNA%20picogreen%20assay%20full%20plate.prt%5D%207_5_2019%2010_44_00%20AM.mp4)
 
 ## Important Notes **READ BEFORE USING**: 
 * It is generally advised to run a set of standard for **each plate** you run on the plate reader. These standards require six wells (including blank), and for organizational purposes it may be easier to dedicate a single column to standards. This means that running a full plate will actually require prepping two plates and two sets of standards.
