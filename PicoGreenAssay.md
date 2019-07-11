@@ -1,6 +1,6 @@
 ---
 layout: page
-title: picoGreen DNA Quantification Assay
+title: picoGreen DNA Quantification Assay for dsDNA (IN REVISION)
 bigimg: /img/tapestation.JPG
 ---
 
@@ -11,31 +11,35 @@ The picoGreen Quantification Assay provides an easy and relatively inexpensive w
 * Plate Reader 
 * Standard 10ul Tips (one per sample)    
 * Standard 200ul tips      
-* Black 96 well plate (DETAILS     
+* Black 96 well plate   
 * PicoGreen Assay Kit:                                            
-   * DNA Ladder (stored at < 8C)            
-   * PicoGreen Buffer (stored at < 8C)
-   * 20X TE (stored at room temp)
+   * | Reagent | Amount | Concentration | Storage | Stability | 
+     |:-------:|:------:|:-------------:|:-------:|:---------:|
+     | Quant-iT™ PicoGreen® dsDNA reagent (stored at < 8C) | 1 mL | Solution in DMSO | 2-6C | 6 months |
+     | 20X TE | 25 mL | 200 mM Tris-HCl, 20 mM EDTA, pH 7.5 | Room Temp | 6 months |
+     | Lambda DNA standard | 1 mL | 100 μg/mL in TE | 2-6C | 6 months |
 
 
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/Gen5%203.03%20-%20Experiment1_%20%5Bcreated%20from%20dsDNA%20picogreen%20assay%20full%20plate.prt%5D%207_5_2019%2010_44_00%20AM.mp4)
 
 ## Important Notes **READ BEFORE USING**: 
-* It is generally advised to run a set of standard for **each plate** you run on the plate reader. These standards require six wells (including blank), and for organizational purposes it may be easier to dedicate a single column to standards. This means that running a full plate will actually require prepping two plates and two sets of standards.
+* Samples are run along side a set of 6 standards (including blank). These standards will need space on plate you are prepping. The manual doesn't specifically mention if a unique set of standard are required for each plate prepared, but I tend to included them on each plate to serve as replicate readings for the standards in order to increase confidence in the the measurements. The easiest thing to do is dedicate the first column of the plate for standards. However, this may not be necessary if you are looking to only use the minimum amount of each reagent.
 
 ## Things to do before starting
 
 **30 minutes ahead of time**
-* Take the picoGreen XXX out of the refridgerator, it will be solid at 8C.
+* Take the Quant-iT™ PicoGreen® dsDNA reagent out of the refridgerator, it will be solid at 8C at refridgerator temperature.
 
 **5 minutes ahead of time (or more)**
 * Turn on the synergy plate read using the power button on the front left of the unit and log on to the attached computer (login info taped to the computer). 
 
+**Insert Picture**
+
 ## Protocol
 
-### Step 1 - Dilute 20X TE and picoGreen XXX
+### Step 1 - Dilute 20X TE and Quant-iT™ PicoGreen® dsDNA reagent
 
-Both 20X TE and the picoGreen XXX will need to be diluted before there use. The 20X TE is created **first** (you'll need to do the picoGreen dilution), and you will generally need a sterile 50mL vial for your dilution (this will depend on the number of samples you are running). The 10X TE is created using mol. grade grade water using the formula below. Next, the picoGreen XXX diltution is performed using the 1X TE dilution you just created with the formula below. The 1.1 in the formula is used to add a 10% solution buffer to account for pipetting error. 
+Both 20X TE and the picoGreen reagent will need to be diluted before there use. The 20X TE is created **first** (you'll need to do the picoGreen dilution), and you will generally need a sterile 50mL vial for your dilution (this will depend on the number of samples you are running). The 1X TE is created using mol. grade grade water using the formula below. Next, the picoGreen reagent diltution is performed using the 1X TE dilution you just created with the formula below. The 1.1 in the formula is used to add a 10% solution buffer to account for pipetting error. 
 
 **1X TE Stock**
 
@@ -97,5 +101,7 @@ Standards are created by before a serial dilution using a provided ladder. They 
 9) Press the green arrow on the task bar, then highlight the entire plate when the plate window appears. Click "OK" to begin the analysis.
 10) This reading should take approximately 20 seconds.
 
-### Step 4 - Storing Data
+### Step 4 - Storing Data and Adjusting Calculations 
+
+TO DO
 
