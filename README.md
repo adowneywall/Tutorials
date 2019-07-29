@@ -4,7 +4,7 @@ This repository contains a list of examples and tutorials related to concepts wi
 
 ### [Coding Snippets](https://github.com/adowneywall/Tutorials/tree/master/coding)
 
-### [Population Genetics]()
+### [Population Genetics](https://github.com/adowneywall/Tutorials/tree/master/pop_gen)
 
 - Linkage Disequilibrium
 
