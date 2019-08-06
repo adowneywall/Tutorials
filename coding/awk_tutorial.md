@@ -14,6 +14,8 @@
 
 **Example**
 
+Print out the 11th line from a file.
+
 Command
 ```
 downey-wall.a@comp5[20190719_fastqc_trim_10bp_Cvirginica_MBD]# awk 'FNR == 11 {print FILENAME $0}' 17005*R1*.txt 
