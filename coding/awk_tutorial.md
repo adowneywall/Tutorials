@@ -37,7 +37,15 @@ A range of lines with AND (`&&` operation)
 awk 'FNR >= 5 && FNR <= 10 {$0}' NAMEOFFILE.txt
 ```
 
+
 Print from multiple files
 ```
 awk 'FNR==11 {$0}' *.txt
+```
+
+#### Skipping lines 
+
+Command:
+```
+awk 'NR % 2 {print} !(NR % 2) && /pattern/ {print}' FILENAME.txt
 ```
