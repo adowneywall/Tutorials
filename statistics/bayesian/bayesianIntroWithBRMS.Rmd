@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Brief Introduction to Bayesian Statistics
 
-![]("/home/downeyam/Github/Tutorials/BayesianStats/img/bayesianDistributions.jpg")
+![]("https://github.com/adowneywall/Tutorials/blob/master/img/bayesianDistributions.jpg")
 
 ### 
 ```{r}

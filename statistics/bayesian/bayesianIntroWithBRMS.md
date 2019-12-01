@@ -1,8 +1,8 @@
 Bayesian multilevel modeling with BRMS
 ================
 
-## Brief Introduction to Bayesian
+## Brief Introduction to Bayesian Statistics
 
-![](%22/home/downeyam/Github/Tutorials/BayesianStats/img/bayesianDistributions.jpg%22)
+![](%22https://github.com/adowneywall/Tutorials/blob/master/img/bayesianDistributions.jpg%22)
 
 ###
