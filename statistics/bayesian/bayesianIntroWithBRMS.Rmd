@@ -1,17 +1,21 @@
 ---
 title: "Bayesian multilevel modeling with BRMS"
-output: github_document
+output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-#knitr::opts_knit("")
 ```
 
-## Brief Introduction to Bayesian Statistics
-
-![]("https://github.com/adowneywall/Tutorials/blob/master/img/bayesianDistributions.jpg")
-
+## Brief Introduction to Bayesian Statistics  
+  
+![](https://github.com/adowneywall/lotterhoslabprotocols/blob/gh-pages/img/404-southpark.jpg)  
+  
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianDistributions.png)  
+  
+ 
 ### 
 ```{r}
 
