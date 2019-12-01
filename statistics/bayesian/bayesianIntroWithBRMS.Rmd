@@ -1,0 +1,19 @@
+---
+title: "Bayesian multilevel modeling with BRMS"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#knitr::opts_knit("")
+```
+
+## Brief Introduction to Bayesian Statistics
+
+![]("/home/downeyam/Github/Tutorials/BayesianStats/img/bayesianDistributions.jpg")
+
+### 
+```{r}
+
+```
+
