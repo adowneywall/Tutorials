@@ -1,24 +1,22 @@
-Bayesian multilevel modeling with BRMS
+Introduction to Bayesian Statistics
 ================
 
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianComic.png)
 
 ## 1 Brief Introduction to Bayesian Statistics
 
-The intent of this section is to provide some basic background and
-context for understanding Bayesian statistics and inference. The goal is
-to illustrate how this approach differs from frequentist statistics and
-offer a practical overview of the core Bayesian principles we will
-hopefully help us down the road when we look at more complicated
-examples of Bayesian models.
+**Initial Thoughts** : The intent of this section is to provide some
+basic background and context for understanding Bayesian statistics and
+inference. The goal is to illustrate how this approach differs from
+frequentist statistics and offer a practical overview of the core
+Bayesian principles we will need down the road when we look at more
+complicated examples of Bayesian models.
 
 ## 1.1 Frequentist vs. Bayesian
 
 One way to to think about the division between a frequentist and
 bayesian approach is to consider the underlying principle of probability
-as it is considered in the two different methods. Here we illustrate two
-distinct definitions which encompass either frequentist or bayesian
-thought:
+as it is thought of in the two different methods:
 
 **R.A. Fisher – Probability as Long-Term Frequency (a frequentist
 approach):**
@@ -34,26 +32,31 @@ results roughly in those odds.
 
     The probability of an event is measured by the degree of logical support there is for the event to occur. According to this definition, a probability is nothing but a generalization of classical logic.
 
-The first definition illustrates a core tenant of frequentist
-statistics; only events that are both random and repeatable (e.g. coin
+The *first definition illustrates a core tenant of frequentist
+statistics*; only events that are both random and repeatable (e.g. coin
 flips) have probabilities. This is because we can only know the
 probability of an event if we have evaluated the likelihood of that
-event over many trials. This allow means that frequentist would not
-attach prior probabilities to any statistic test (or hypothesis).
+event over many trials. This means that frequentists would not attach
+prior probabilities to any statistical test (or hypothesis).
 
 If we consider the second definition, we can see Bayesians have a
-greater degree of flexibility in there interpretation. Practically
-speaking, Bayesians would argue that we can often large information from
-the sample data to estimate prior probabilities of certain events (or
-hypotheses) occuring.
+greater degree of flexibility in their interpretation. Practically
+speaking, Bayesians would argue that we can often leverage information
+from the sample data to estimate prior probabilities of certain events
+(or hypotheses) occuring.
 
 ### 1.2 Conceptual Example
 
+Say, the problem involves estimating the average height of all men who
+are currently in or have ever attended college. We assume that the
+height has a normal distribution and that the standard deviation is
+available. Therefore, all we need to estimate is the mean.
+
 **Frequentist Approach**
 
-A frequentist would reason that since the mean height is an actual
-number, they cannot assign a random probability to it being equal to,
-less than, or greater than a certain value.
+A frequentist would reason that since mean height is an actual number,
+you cannot assign a random probability to it being equal to, less than,
+or greater than a certain value.
 
 Therefore, a frequentist would collect some sample data from the
 universal data and estimate the mean as the value which is most
@@ -68,7 +71,7 @@ Bayesian approach will do so by defining a probability distribution
 based on possible values of the mean.
 
 This distribution will then be updated using data from the sample. This
-update is done by applying the Baye’s theorem which is shown below.
+update is done by applying the Baye’s theorem (shown below).
 
 The sample data makes the probability distribution narrower around the
 parameter’s true and unknown value. The Baye’s theorem is applied to
@@ -77,7 +80,7 @@ the differences in Frequentist vs Bayesian ab testing.
 
 [Link to youtube description](https://youtu.be/r76oDIvwETI)
 
-### 1.3 The Differences
+### 1.3 Key Differences
 
 **(i) Use of prior probabilities**  
 The use of prior probabilities in the Bayesian technique is the most
@@ -102,14 +105,11 @@ doesn’t mean that there is no uncertainty in the frequentist approach.
 The estimate derived from sample data can, and is often, wrong. In order
 to mitigate this uncertainty, Frequentists use two techniques.
 
-The use of confidence intervals.
-
-Null hypothesis significance testing (NHST) which is related to
-P-values.
+1)  The use of confidence intervals.  
+2)  Null hypothesis significance testing (NHST) which is related to
+    P-values.
 
 ## 2 Bayesian Statistics - A practical introduction
-
-![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianDistributions.png)
 
 “Bayesian statistics is a mathematical procedure that applies
 probabilities to statistical problems. It provides people the tools to
@@ -277,6 +277,8 @@ mathematical form. Keep this in mind. We will come back to it
 again.*
 
 ## 3 Likelihood estimation and generating prior and posterior distribution
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianDistributions.png)
 
 Next, lets continue with the coin flipping example and derive the
 likelihood function, prior and posterior distributions.
@@ -526,15 +528,12 @@ odds,
 To reject a null hypothesis, a BF \<1/10 is preferred.
 
 We can see the immediate benefits of using Bayes Factor instead of
-p-values since they are independent of intentions and sample
-size.
+p-values since they are independent of intentions and sample size.
 
-# 5 Dimensionality Reduction techniques using MCMC (Markov Chain Monte Carlo) algorithms
+# 5 End Thoughts
 
-TODO
-
-# 6 Bayesian regression model
-
-TODO
-
-## 7 Bayesian Modelling using BRMS
+Next topics I will cover are:  
+\* Dimensionality Reduction techniques using MCMC (Markov Chain Monte
+Carlo) algorithms  
+\* Bayesian regression model  
+\* Performing Bayesian regression in R with BRMS package
