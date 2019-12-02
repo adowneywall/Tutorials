@@ -3,7 +3,7 @@ Bayesian multilevel modeling with BRMS
 
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianComic.png)
 
-## Brief Introduction to Bayesian Statistics
+## 1 Brief Introduction to Bayesian Statistics
 
 The intent of this section is to provide some basic background and
 context for understanding Bayesian statistics and inference. The goal is
@@ -12,7 +12,7 @@ offer a practical overview of the core Bayesian principles we will
 hopefully help us down the road when we look at more complicated
 examples of Bayesian models.
 
-### Frequentist vs. Bayesian
+## 1.1 Frequentist vs. Bayesian
 
 One way to to think about the division between a frequentist and
 bayesian approach is to consider the underlying principle of probability
@@ -47,7 +47,7 @@ speaking, Bayesians would argue that we can often large information from
 the sample data to estimate prior probabilities of certain events (or
 hypotheses) occuring.
 
-**Conceptual Example**
+### 1.2 Conceptual Example
 
 **Frequentist Approach**
 
@@ -77,7 +77,7 @@ the differences in Frequentist vs Bayesian ab testing.
 
 [Link to youtube description](https://youtu.be/r76oDIvwETI)
 
-### Frequentist vs Bayesian Statistics – The Differences
+### 1.3 The Differences
 
 **(i) Use of prior probabilities**  
 The use of prior probabilities in the Bayesian technique is the most
@@ -107,7 +107,7 @@ The use of confidence intervals.
 Null hypothesis significance testing (NHST) which is related to
 P-values.
 
-### Bayesian Statistics A practical introduction
+## 2 Bayesian Statistics - A practical introduction
 
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianDistributions.png)
 
@@ -137,7 +137,7 @@ question is: how much ?
 To approach this problem of how much, we need to become familiar with
 some core concepts including conditional probability and bayes theorem.
 
-**Conditional Probability**
+### 2.1 Conditional Probability
 
 We can define conditional probability as : “The probability of and event
 A given B equals the probability of B and A happening together divided
@@ -185,7 +185,7 @@ new evidence i.e rain.
 Conditional Probability is the basis of the **Bayes Theorem** and a
 fundamental part of Bayesian Inference.
 
-**Bayes Theorem**
+### 2.2 Bayes Theorem
 
 Bayes Theorem comes into effect when multiple events form an exhaustive
 set with another event B.
@@ -212,7 +212,7 @@ derive:
 
 This is the **Bayes Theorem Equation**.
 
-**Bayesian Inference**
+### 2.3 Bayesian Inference
 
 The field of bayesian statistics is about leveraging this Bayes Theorem
 equation to make inferences about the probability of a particular
@@ -264,8 +264,7 @@ coin’s fairness.*
 the evidence (i.e the number of heads).
 
 Next step, lets a little dive deeper into mathematical implications of
-this concept.
-
+this concept.  
 To define our model correctly, we need two mathematical models before
 hand. One to represent **the likelihood function - P(D|θ)** and the
 other for representing the distribution of **prior beliefs - P(θ)**. The
@@ -274,9 +273,10 @@ distribution.
 
 *Since prior and posterior are both beliefs about the distribution of
 fairness of coin, intuition tells us that both should have the same
-mathematical form. Keep this in mind. We will come back to it again.*
+mathematical form. Keep this in mind. We will come back to it
+again.*
 
-### Key Functions - generating prior and posterior distribution
+## 3 Likelihood estimation and generating prior and posterior distribution
 
 Next, lets continue with the coin flipping example and derive the
 likelihood function, prior and posterior distributions.
@@ -287,11 +287,11 @@ Recall the probability of observing heads/tails depends upon the
 fairness of coin
 (`θ`).
 
-![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_b_1.png)
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_b_1.png)  
 \[If coin is fair θ = 0.5, probability of observing heads (y=1) is
 0.5\]
 
-![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_b_2.png)
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_b_2.png)  
 \[If coin is fair θ = 0.5, probability of observing tails(y=0) is 0.5\]
 
 It is worth noticing that representing 1 as heads and 0 as tails is just
@@ -301,6 +301,8 @@ probability of both the
 outcomes.
 
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_b_3.png)
+
+## 3.1 Likelihood function
 
 This is called the **Bernoulli Likelihood Function** and the task of
 coin flipping is called Bernoulli’s
@@ -322,7 +324,7 @@ by:
 
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_b_7.png)
 
-**Prior Distribution**
+### 3.2 Prior Distribution
 
 This distribution is used to represent our strengths on beliefs about
 the parameters based on the previous experience.
@@ -365,7 +367,7 @@ code in R:
     alpha=c(0,2,10,20,50,500)
     beta=c(0,2,8,11,27,232)
     for(i in 1:length(alpha)){
-      y <- dbeta(x,shape1=alpha[1],shape2=beta[i])
+      y <- dbeta(x,shape1=alpha[i],shape2=beta[i])
       plot(x,y,type="l")
     }
 
@@ -394,7 +396,7 @@ shape parameters can be easily calculated.
     proportion the peak narrows increasing our confidence in the
     fairness of the coin value.
 
-### Posterior Distribution
+### 3.3 Posterior Distribution
 
 The reason that we chose prior belief is to obtain a beta distribution.
 This is because when we multiply it with a likelihood function,
@@ -405,7 +407,7 @@ mile.
 
 Let’s calculate posterior belief using bayes theorem.
 
-**Calculating posterior belief using Bayes Theorem**
+**Calculating posterior using Bayes Theorem**
 
 Now, our posterior belief
 becomes,
@@ -445,8 +447,6 @@ look:
 
 Lets visualize both the beliefs on a graph:
 
-The R code for the above graph is as:
-
     library(stats)
     x = seq(0,1,by=0.1)  
     alpha = c(13.8,93.8)  
@@ -461,14 +461,14 @@ The R code for the above graph is as:
 As more and more flips are made and new data is observed, our beliefs
 get updated. This is the real power of Bayesian Inference.
 
-### Test for Significance
+## 4 Thoughts on significance testing
 
 Without going into the rigorous mathematical structures, this section
 will provide you a quick overview of different approaches of frequentist
 and bayesian methods to test for significance and difference between
 groups and which method is most reliable.
 
-**p-value**
+### 4.1 p-value
 
 n this, the t-score for a particular sample from a sampling distribution
 of fixed size is calculated. Then, p-values are predicted. We can
@@ -482,34 +482,34 @@ and hence different p-value. It is completely absurd. A p-value less
 than 5% does not guarantee that null hypothesis is wrong nor a p-value
 greater than 5% ensures that null hypothesis is right.
 
-**Confidence Interval**
+### 4.2 Confidence Interval
 
 Confidence Intervals also suffer from the same defect. Moreover since
 C.I is not a probability distribution , there is no way to know which
 values are most probable.
 
-**Bayes Factor**
+### 4.3 Bayes Factor
 
 Bayes factor is the equivalent of p-value in the bayesian framework.
 Lets understand it in an comprehensive manner.
 
 The null hypothesis in bayesian framework assumes ∞ probability
-distribution only at a particular value of a parameter (say θ=0.5) and a
-zero probability else where. (M1)
+distribution only at a particular value of a parameter (say `θ` = 0.5)
+and a zero probability else where. (M1)
 
-The alternative hypothesis is that all values of θ are possible, hence a
-flat curve representing the distribution. (M2)
+The alternative hypothesis is that all values of `θ` are possible, hence
+a flat curve representing the distribution. (M2)
 
 Now, posterior distribution of the new data looks like below.
 
 significance, bayes factor, hypothesis testing
 
 Bayesian statistics adjusted credibility (probability) of various values
-of θ. It can be easily seen that the probability distribution has
+of `θ`. It can be easily seen that the probability distribution has
 shifted towards M2 with a value higher than M1 i.e M2 is more likely to
 happen.
 
-Bayes factor does not depend upon the actual distribution values of θ
+Bayes factor does not depend upon the actual distribution values of `θ`
 but the magnitude of shift in values of M1 and M2.
 
 In panel A (shown above): left bar (M1) is the prior probability of the
@@ -526,6 +526,15 @@ odds,
 To reject a null hypothesis, a BF \<1/10 is preferred.
 
 We can see the immediate benefits of using Bayes Factor instead of
-p-values since they are independent of intentions and sample size.
+p-values since they are independent of intentions and sample
+size.
 
-## Bayesian Modelling using BRMS
+# 5 Dimensionality Reduction techniques using MCMC (Markov Chain Monte Carlo) algorithms
+
+TODO
+
+# 6 Bayesian regression model
+
+TODO
+
+## 7 Bayesian Modelling using BRMS
