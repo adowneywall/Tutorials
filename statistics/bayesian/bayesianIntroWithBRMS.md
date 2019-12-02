@@ -49,15 +49,13 @@ hypotheses) occuring.
 
 **Conceptual Example**
 
-To illustrate this more clearly consider the
-
 **Frequentist Approach**
 
 A frequentist would reason that since the mean height is an actual
 number, they cannot assign a random probability to it being equal to,
 less than, or greater than a certain value.
 
-Therefore, a Frequentist would collect some sample data from the
+Therefore, a frequentist would collect some sample data from the
 universal data and estimate the mean as the value which is most
 consistent with the actual mean. This is known as a maximum likelihood
 estimate. When the distribution is normal, this estimate is simply the
@@ -70,10 +68,7 @@ Bayesian approach will do so by defining a probability distribution
 based on possible values of the mean.
 
 This distribution will then be updated using data from the sample. This
-update is done by applying the Baye’s theorem which is shown
-below.
-
-![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesTheoremDiagram.png)
+update is done by applying the Baye’s theorem which is shown below.
 
 The sample data makes the probability distribution narrower around the
 parameter’s true and unknown value. The Baye’s theorem is applied to
@@ -171,47 +166,49 @@ This can also be written as:
 
 This is known as the **conditional probability**..
 
-Now lets lets revisit the racing problem:
+**Lets lets revisit the racing problem….**
 
 Suppose, B be the event of winning of James Hunt. A be the event of
 raining. Therefore,
 
-    P(A) =1/2, since it rained twice out of four days.
-    P(B) is 1/4, since James won only one race out of four.
-    P(A|B)=1, since it rained every time when James won.
+`P(A)` = 1/2, since it rained twice out of four days. `P(B)` = 1/4,
+since James won only one race out of four. `P(A|B)` = 1, since it rained
+every time when James won.
 
 Substituting the values in the conditional probability formula, we get
-the probability to be around 50%, which is almost the double of 25% when
-rain was not taken into account (Solve it at your end).
+the probability to be around 50%, which is almost the double of 25% (1
+out of 4 races) when rain was not taken into account.
 
 This further strengthened our belief of James winning in the light of
-new evidence i.e rain. You must be wondering that this formula bears
-close resemblance to something you might have heard a lot about. Think\!
+new evidence i.e rain.
 
-Probably, you guessed it right. It looks like Bayes Theorem.
-
-Bayes theorem is built on top of conditional probability and lies in the
-heart of Bayesian Inference. Let’s understand it in detail now.
+Conditional Probability is the basis of the **Bayes Theorem** and a
+fundamental part of Bayesian Inference.
 
 **Bayes Theorem**
 
 Bayes Theorem comes into effect when multiple events form an exhaustive
 set with another event B.
 
-B can be written as:
+B can be written
+as:
 
-![]()
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesEq_1.png)
 
-The probability of B can be written as:
+The probability of B can be written
+as:
 
-![]()
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesEq_2.png)
 
 Where,
 
-\!()\[\]
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesEq_3.png)
 
 So, using the conditional probability equation and a little bit of
-reconfiguring we can derive:
+reconfiguring we can
+derive:
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesEq_4.png)
 
 This is the **Bayes Theorem Equation**.
 
@@ -222,61 +219,313 @@ equation to make inferences about the probability of a particular
 hypothesis. Lets consider a set of coin tosses to explore this idea:
 
 An important part of bayesian inference is the establishment of
-parameters and models.
+**parameters** and **models**.
 
 Models are the mathematical formulation of the observed events.
 Parameters are the factors in the models affecting the observed data.
-For example, in tossing a coin, fairness of coin may be defined as the
-parameter of coin denoted by θ. The outcome of the events may be denoted
-by D.
+For example, in tossing a coin, **fairness of coin** may be defined as
+the parameter of coin denoted by `θ`. The outcome of the events may be
+denoted by `D`.
 
-Answer this now. What is the probability of 4 heads out of 9 tosses(D)
-given the fairness of coin (θ). i.e P(D|θ)
+From this we might ask the question - What is the probability of 4 heads
+out of 9 tosses(`D`) given the fairness of coin (`θ`)? Or if we use
+earlier notation : `P(D|θ)`.
 
-Wait, did I ask the right question? No.
+Whats more, we might be first tempted to ask about the fairness of the
+coin.
 
-We should be more interested in knowing : Given an outcome (D) what is
-the probbaility of coin being fair (θ=0.5)
+So we might first ask : what is the probability of the coin being fair
+(θ=0.5) given the given `D` outcomes?
 
 Lets represent it using Bayes Theorem:
 
-P(θ|D)=(P(D|θ) X P(θ))/P(D)
+`P(θ|D)=(P(D|θ) X P(θ))/P(D)`
 
-Here, P(θ) is the prior i.e the strength of our belief in the fairness
-of coin before the toss. It is perfectly okay to believe that coin can
-have any degree of fairness between 0 and 1.
+Here, **`P(θ)`** is the **prior** - the strength of our belief in the
+fairness of coin before the toss. It is perfectly okay to believe that
+coin can have any degree of fairness between 0 and 1.
 
-P(D|θ) is the likelihood of observing our result given our distribution
-for θ. If we knew that coin was fair, this gives the probability of
-observing the number of heads in a particular number of flips.
+**`P(D|θ)`** is the likelihood of observing our result given our
+distribution for `θ`. If we knew that coin was fair, this gives the
+probability of observing the number of heads in a particular number of
+flips.
 
-P(D) is the evidence. This is the probability of data as determined by
-summing (or integrating) across all possible values of θ, weighted by
-how strongly we believe in those particular values of θ.
+**`P(D)`** is the evidence. This is the probability of data as
+determined by summing (or integrating) across all possible values of
+`θ`, weighted by how strongly we believe in those particular values of
+`θ`.
 
-If we had multiple views of what the fairness of the coin is (but didn’t
-know for sure), then this tells us the probability of seeing a certain
-sequence of flips for all possibilities of our belief in the coin’s
-fairness.
+*If we had multiple views of what the fairness of the coin is (but
+didn’t know for sure), then this tells us the probability of seeing a
+certain sequence of flips for all possibilities of our belief in the
+coin’s fairness.*
 
-P(θ|D) is the posterior belief of our parameters after observing the
-evidence i.e the number of heads .
+**`P(θ|D)`** is the posterior belief of our parameters after observing
+the evidence (i.e the number of heads).
 
-From here, we’ll dive deeper into mathematical implications of this
-concept. Don’t worry. Once you understand them, getting to its
-mathematics is pretty easy.
+Next step, lets a little dive deeper into mathematical implications of
+this concept.
 
-To define our model correctly , we need two mathematical models before
-hand. One to represent the likelihood function P(D|θ) and the other for
-representing the distribution of prior beliefs . The product of these
-two gives the posterior belief P(θ|D) distribution.
+To define our model correctly, we need two mathematical models before
+hand. One to represent **the likelihood function - P(D|θ)** and the
+other for representing the distribution of **prior beliefs - P(θ)**. The
+product of these two gives the **posterior belief - P(θ|D)**
+distribution.
 
-Since prior and posterior are both beliefs about the distribution of
+*Since prior and posterior are both beliefs about the distribution of
 fairness of coin, intuition tells us that both should have the same
-mathematical form. Keep this in mind. We will come back to it again.
+mathematical form. Keep this in mind. We will come back to it again.*
 
-So, there are several functions which support the existence of bayes
-theorem. Knowing them is important, hence I have explained them in
-detail.
+### Key Functions - generating prior and posterior distribution
+
+Next, lets continue with the coin flipping example and derive the
+likelihood function, prior and posterior distributions.
+
+**Likelihood Function - bernoulli trails (since data is binomial)**
+
+Recall the probability of observing heads/tails depends upon the
+fairness of coin
+(`θ`).
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_b_1.png)
+\[If coin is fair θ = 0.5, probability of observing heads (y=1) is
+0.5\]
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_b_2.png)
+\[If coin is fair θ = 0.5, probability of observing tails(y=0) is 0.5\]
+
+It is worth noticing that representing 1 as heads and 0 as tails is just
+a mathematical notation to formulate a model. We can combine the above
+mathematical definitions into a single definition to represent the
+probability of both the
+outcomes.
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_b_3.png)
+
+This is called the **Bernoulli Likelihood Function** and the task of
+coin flipping is called Bernoulli’s
+trials.
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_b_4.png)
+
+And, when we want to see a series of heads or flips, its probability is
+given
+by:
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_b_5.png)
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_b_6.png)
+
+Furthermore, if we are interested in the probability of number of heads
+**z** turning up in **N** number of flips then the probability is given
+by:
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_b_7.png)
+
+**Prior Distribution**
+
+This distribution is used to represent our strengths on beliefs about
+the parameters based on the previous experience.
+
+But, what if one has no previous experience?
+
+Don’t worry. Mathematicians have devised methods to mitigate this
+problem too. It is known as uninformative priors. I would like to inform
+you beforehand that it is just a misnomer. Every uninformative prior
+always provides some information event the constant distribution prior.
+
+Well, the mathematical function used to represent the prior beliefs is
+known as beta distribution. It has some very nice mathematical
+properties which enable us to model our beliefs about a binomial
+distribution.
+
+Probability density function of `beta distribution` is of the form
+:
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_prior_1.png)
+
+where, our focus stays on numerator. The denominator is there just to
+ensure that the total probability density function upon integration
+evaluates to 1.
+
+`α` and `β` are called the shape deciding parameters of the density
+function. Here `α` is analogous to number of heads in the trials and `β`
+corresponds to the number of tails. The diagrams below will help you
+visualize the beta distributions for different values of `α` and
+`β`.
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_priorDistribution.png)
+
+You too can draw the beta distribution for yourself using the following
+code in R:
+
+    library(stats)
+    par(mfrow=c(3,2))
+    x=seq(0,1,by=0.1)
+    alpha=c(0,2,10,20,50,500)
+    beta=c(0,2,8,11,27,232)
+    for(i in 1:length(alpha)){
+      y <- dbeta(x,shape1=alpha[1],shape2=beta[i])
+      plot(x,y,type="l")
+    }
+
+![](bayesianIntroWithBRMS_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+
+Note: `α` and `β` are intuitive to understand since they can be
+calculated by knowing the mean (`μ`) and standard deviation (`σ`) of the
+distribution. In fact, they are related
+as:
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_prior_2.png)
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_prior_3.png)
+
+If mean and standard deviation of a distribution are known , then there
+shape parameters can be easily calculated.
+
+**Inference drawn from graphs above**:
+
+1)  When there was no toss we believed that every fairness of coin is
+    possible as depicted by the flat line.  
+2)  When there were more number of heads than the tails, the graph
+    showed a peak shifted towards the right side, indicating higher
+    probability of heads and that coin is not fair.  
+3)  As more tosses are done, and heads continue to come in larger
+    proportion the peak narrows increasing our confidence in the
+    fairness of the coin value.
+
+### Posterior Distribution
+
+The reason that we chose prior belief is to obtain a beta distribution.
+This is because when we multiply it with a likelihood function,
+posterior distribution yields a form similar to the prior distribution
+which is much easier to relate to and understand. If this much
+information whets your appetite, I’m sure you are ready to walk an extra
+mile.
+
+Let’s calculate posterior belief using bayes theorem.
+
+**Calculating posterior belief using Bayes Theorem**
+
+Now, our posterior belief
+becomes,
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_posterior_1.png)
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_posterior_2.png)
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_posterior_3.png)
+
+Now, our posterior
+becomes,
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_posterior_4.png)
+
+This is interesting. Just knowing the mean and standard distribution of
+our belief about the parameter `θ` and by observing the number of heads
+in N flips, we can update our belief about the model parameter(`θ`).
+
+Lets understand this with the help of a simple example:
+
+Suppose, you think that a coin is biased. It has a mean (`μ`) bias of
+around 0.6 with standard deviation of 0.1.
+
+Then ,
+
+`α = 13.8` , `β = 9.2`
+
+i.e our distribution will be biased on the right side. Suppose, you
+observed 80 heads (z=80) in 100 flips(N=100). Let’s see how our prior
+and posterior beliefs are going to
+look:
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_posterior_5.png)
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_posterior_6.png)
+
+Lets visualize both the beliefs on a graph:
+
+The R code for the above graph is as:
+
+    library(stats)
+    x = seq(0,1,by=0.1)  
+    alpha = c(13.8,93.8)  
+    beta = c(9.2,29.2)  
+    for(i in 1:length(alpha)){
+      y <- dbeta(x,shape1=alpha[1],shape2=beta[i])
+      plot(x,y,type="l",xlab="theta",ylab="density")
+    }
+
+![](bayesianIntroWithBRMS_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->![](bayesianIntroWithBRMS_files/figure-gfm/unnamed-chunk-2-2.png)<!-- -->
+
+As more and more flips are made and new data is observed, our beliefs
+get updated. This is the real power of Bayesian Inference.
+
+### Test for Significance
+
+Without going into the rigorous mathematical structures, this section
+will provide you a quick overview of different approaches of frequentist
+and bayesian methods to test for significance and difference between
+groups and which method is most reliable.
+
+**p-value**
+
+n this, the t-score for a particular sample from a sampling distribution
+of fixed size is calculated. Then, p-values are predicted. We can
+interpret p values as (taking an example of p-value as 0.02 for a
+distribution of mean 100) : There is 2% probability that the sample will
+have mean equal to 100.
+
+This interpretation suffers from the flaw that for sampling
+distributions of different sizes, one is bound to get different t-score
+and hence different p-value. It is completely absurd. A p-value less
+than 5% does not guarantee that null hypothesis is wrong nor a p-value
+greater than 5% ensures that null hypothesis is right.
+
+**Confidence Interval**
+
+Confidence Intervals also suffer from the same defect. Moreover since
+C.I is not a probability distribution , there is no way to know which
+values are most probable.
+
+**Bayes Factor**
+
+Bayes factor is the equivalent of p-value in the bayesian framework.
+Lets understand it in an comprehensive manner.
+
+The null hypothesis in bayesian framework assumes ∞ probability
+distribution only at a particular value of a parameter (say θ=0.5) and a
+zero probability else where. (M1)
+
+The alternative hypothesis is that all values of θ are possible, hence a
+flat curve representing the distribution. (M2)
+
+Now, posterior distribution of the new data looks like below.
+
+significance, bayes factor, hypothesis testing
+
+Bayesian statistics adjusted credibility (probability) of various values
+of θ. It can be easily seen that the probability distribution has
+shifted towards M2 with a value higher than M1 i.e M2 is more likely to
+happen.
+
+Bayes factor does not depend upon the actual distribution values of θ
+but the magnitude of shift in values of M1 and M2.
+
+In panel A (shown above): left bar (M1) is the prior probability of the
+null hypothesis.
+
+In panel B (shown), the left bar is the posterior probability of the
+null hypothesis.
+
+Bayes factor is defined as the ratio of the posterior odds to the prior
+odds,
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianTutorial_bayesFactor_1.png)
+
+To reject a null hypothesis, a BF \<1/10 is preferred.
+
+We can see the immediate benefits of using Bayes Factor instead of
+p-values since they are independent of intentions and sample size.
 
 ## Bayesian Modelling using BRMS
