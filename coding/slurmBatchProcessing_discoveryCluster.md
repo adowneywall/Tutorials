@@ -3,6 +3,8 @@
 **Goal**
 Create singleBatch and multiBatch scripts for running batch processing jobs using slurm on the discovery computer cluster.
 
+[Folder with scripts and data used on Discovery cluster](https://github.com/adowneywall/Tutorials/tree/master/src/DiscoveryDataBatchTutorial)
+
 Processing Script in R:
 ```{r}
 #### Script for perform
