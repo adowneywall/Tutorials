@@ -3,8 +3,6 @@
 **Goal**
 Create singleBatch and multiBatch scripts for running batch processing jobs using slurm on the discovery computer cluster.
 
-
-
 Processing Script in R:
 ```{r}
 #### Script for perform
@@ -79,7 +77,7 @@ for(i in 1:nrow(df)){
 ```
 
 **Table Input**
-
+![](https://github.com/adowneywall/Tutorials/blob/master/img/slurmBatchTutorial_inputTable.png)
 
 **Visualization of processing output**
-
+![](https://github.com/adowneywall/Tutorials/blob/master/img/slurmBatchTutorial_multiBatchFigure.png)
