@@ -3,16 +3,18 @@ Introduction to Bayesian Statistics
 
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianComic.png)
 
-## 1 Brief Introduction to Bayesian Statistics
+### Initial Thoughts
 
-**Initial Thoughts** : The intent of this section is to provide some
-basic background and context for understanding Bayesian statistics and
-inference. The goal is to illustrate how this approach differs from
-frequentist statistics and offer a practical overview of the core
-Bayesian principles we will need down the road when we look at more
-complicated examples of Bayesian models.
+The intent of this section is to provide some basic background and
+context for understanding Bayesian statistics and inference. The goal is
+to illustrate how this approach differs from frequentist statistics and
+offer a practical overview of the core Bayesian principles we will need
+down the road when we look at more complicated examples of Bayesian
+models.
 
-## 1.1 Frequentist vs. Bayesian
+## 1 Frequentist vs. Bayesian
+
+### 1.1 Probabilities
 
 One way to to think about the division between a frequentist and
 bayesian approach is to consider the underlying principle of probability
@@ -71,12 +73,15 @@ Bayesian approach will do so by defining a probability distribution
 based on possible values of the mean.
 
 This distribution will then be updated using data from the sample. This
-update is done by applying the Baye’s theorem (shown below).
+update is done by applying the Baye’s theorem.
 
 The sample data makes the probability distribution narrower around the
 parameter’s true and unknown value. The Baye’s theorem is applied to
 each possible value of the parameter. Here’s a short video highlighting
-the differences in Frequentist vs Bayesian ab testing.
+the differences in Frequentist vs Bayesian ab
+testing.
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesTheoremDiagram.png)
 
 [Link to youtube description](https://youtu.be/r76oDIvwETI)
 

@@ -13,11 +13,12 @@ library(brms)
   
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesianComic.png) 
 
-## 1 Brief Introduction to Bayesian Statistics  
-  
-**Initial Thoughts** : The intent of this section is to provide some basic background and context for understanding Bayesian statistics and inference. The goal is to illustrate how this approach differs from frequentist statistics and offer a practical overview of the core Bayesian principles we will need down the road when we look at more complicated examples of Bayesian models.  
+### Initial Thoughts  
+The intent of this section is to provide some basic background and context for understanding Bayesian statistics and inference. The goal is to illustrate how this approach differs from frequentist statistics and offer a practical overview of the core Bayesian principles we will need down the road when we look at more complicated examples of Bayesian models.  
 
-## 1.1 Frequentist vs. Bayesian  
+## 1 Frequentist vs. Bayesian
+
+### 1.1 Probabilities
   
 One way to to think about the division between a frequentist and bayesian approach is to consider the underlying principle of probability as it is thought of in the two different methods:  
 
@@ -49,9 +50,11 @@ Therefore, a frequentist would collect some sample data from the universal data 
 **Bayesian Approach**  
 A Bayesian, on the contrary, would reason that although the mean is an actual number, there is no reason not to assign it a probability. The Bayesian approach will do so by defining a probability distribution based on possible values of the mean.
 
-This distribution will then be updated using data from the sample. This update is done by applying the Baye’s theorem (shown below).
+This distribution will then be updated using data from the sample. This update is done by applying the Baye’s theorem.
 
 The sample data makes the probability distribution narrower around the parameter’s true and unknown value. The Baye’s theorem is applied to each possible value of the parameter. Here’s a short video highlighting the differences in Frequentist vs Bayesian ab testing.  
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/bayesTheoremDiagram.png)
 
 [Link to youtube description](https://youtu.be/r76oDIvwETI)
 
@@ -254,13 +257,15 @@ for(i in 1:length(alpha)){
 ```{r,echo=FALSE, fig.width=12,fig.height=20}
 library(stats)
 par(mfrow=c(3,2))
-x=seq(0,1,by=0.1)
+x=seq(0,1,by=0.01)
 alpha=c(0,2,10,20,50,500)
 beta=c(0,2,8,11,27,232)
 for(i in 1:length(alpha)){
-  y <- dbeta(x,shape1=alpha[i],shape2=beta[i])
+  y <- x^{alpha[i]-1}*(1-x)^{beta[i]-1}
+  #y <- dbeta(x,shape1=alpha[i],shape2=beta[i])
   plot(x,y,type="l")
 }
+dbeta()
 ```
 
 Note: `α` and `β` are intuitive to understand since they can be calculated by knowing the mean (`μ`) and standard deviation (`σ`) of the distribution. In fact, they are related as:
