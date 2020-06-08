@@ -1,7 +1,7 @@
 ---
 title: "Thoughts on spurious correlations driving correlations between basal and acclimation responses"
 date: "3/19/2020"
-output: html_document
+output: github_document
 editor_options: 
   chunk_output_type: console
 ---
