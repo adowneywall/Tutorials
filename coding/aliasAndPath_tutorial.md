@@ -13,11 +13,11 @@ TODO
 
 Open your `bashrc` (or `bash_profile`) file
 ```
-nano ./bash_profile
+nano ~/.bash_profile
 ```
 Add an alias
 ```
-alias new_command="/absolute/path/to/actual/command.sh"
+alias new_command="./absolute/path/to/actual/command.sh"
 ```
 
 Source your bash file (or restart terminal) to make the changes active
@@ -28,7 +28,7 @@ source(~/.bash_profile)
 ### Updating your `$PATH` variable
 Open your `bashrc` (or `bash_profile`) file
 ```
-nano ./bash_profile
+nano ~/.bash_profile
 ```
 Add to existing items of `$PATH`
 ```
