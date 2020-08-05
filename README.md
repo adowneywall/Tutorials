@@ -10,6 +10,7 @@ This repository contains a list of examples and tutorials related to concepts wi
   * [Creating sSlurm script for discovery](https://github.com/adowneywall/Tutorials/blob/master/tutorials/coding/slurmBatchProcessing_discoveryCluster.md)
 
 ### [Genomics]() 
+  * [Introduction to k-mers](https://github.com/adowneywall/Tutorials/blob/master/tutorials/genomics/kmers.md)
 
 ### [Statistics](https://github.com/adowneywall/Tutorials/tree/master/tutorials/statistics)
   * [Bayesian Introduction with BRMS](https://github.com/adowneywall/Tutorials/blob/master/tutorials/statistics/bayesian/bayesianIntroWithBRMS.md)
