@@ -1,0 +1,137 @@
+---
+title: "What is a kmer? And why do we count them?"
+date: "8/4/2020"
+output: github_document
+always_allow_html: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(kmer)
+library(dplyr)
+library(kableExtra)
+library(ggplot2)
+library(cowplot)
+```
+
+### Overview  
+The purpose of the markdown is to address the two questions within the title within the broad context of genomics. More specifically, why it's often important when thinking about processing sequence data from genomics projects and performing early quality control and mapping steps to consider k-mers, k-mer counting, and k-mer spectra.
+
+
+### So what is a k-mer? And why to we count them?
+
+A K-mer is a sequence of bases equal to `k`. K-mer counting often refers to the summation of each unique k-mer in a large section of sequence. For example, we might count the number of unique 3-mer (K=3) across the whole genome of an organism. This would amount to a manager number of bins (4x4x4=64), but depending on the size of the genome we expect the number of observations for each k-mers to be very larger. When we look at the distribution of the k-mers in sequence data from an experiment it can be a powerful tool for identifying whether there are overrepresented parts of our data (i.e. particular k-mers that have much high representation in our data than expected). 
+
+Here is an example of a K = 3, k-mer;
+
+```{r echo=FALSE}
+seq <- sample(c("A","T","C","G"),size=10,replace=TRUE)
+print(paste0("Sequence: ",paste0(seq,collapse = '')))
+```
+
+`K = 3`
+```{r echo=FALSE}
+kPos <- function(x,k,verbose=TRUE){
+  if(verbose==TRUE){print(paste0("Sequence:   ",x))}
+  counter=0
+  seq_out <- NULL
+  for(i in 1:c(nchar(x)-k+1)){
+        y <- substring(x,i,i+k-1)
+        header <- nchar(paste0(k,"mer ",i," :"))
+        offset <- 12-header
+        space <- paste(rep(" ",c(offset+counter)),collapse="")
+        if(verbose==TRUE){print(paste0(k,"mer ",i-1," :",space,y))}
+        counter=counter+1
+        seq_out <- c(seq_out,y)
+  }
+  names(seq_out) <- paste0("pos_",0:c(nchar(x)-k))
+  return(seq_out)
+}
+
+k3 <- c(paste0(seq,collapse = ''))
+k3_summary <- kPos(k3,3)
+kable(t(k3_summary)) %>% kable_styling()
+kable(t(table(k3_summary))) %>% kable_styling()
+```
+
+Same sequence but with a `K = 4`;
+
+```{r echo=FALSE}
+k4 <- c(paste0(seq,collapse = ''))
+k4_summary <- kPos(k4,4)
+kable(t(k4_summary)) %>% kable_styling()
+kable(t(table(k4_summary))) %>% kable_styling()
+
+```
+
+Notice how there are 1 fewer `4mer` than `3mers` in the same sequence. Any sequence of length `L` will contain `L - k + 1 k-mers`, which has implications for k-mer analyses when k is close to the length of the sequence.
+
+When $k << L$ we expect that there should be an equal chance of a specific k-mer at any position. We can look for violations of this expectation to discover potential biases our data.
+
+Check out this page for more of an introduction on k-mers [LINK](https://bioinfologics.github.io/post/2018/09/17/k-mer-counting-part-i-introduction/)
+
+### Specific Case : K-mers spectra in sequence mapping (e.g. `FASTQC`)
+
+Looking for k-mer bias in sequence data is a common use for k-mers. The idea is you count the number of observations for each k-mer at each position and see if the number of observations exceeds the expected number of k-mers. In general, this expected number should be equal to the probability of any one k-mer being selected times the number of reads. K-mers with very large observed/expected ratios are said to be biased at this that position. As an example, when looking at read data from an illumina platform, we expect that the first few based of the read prior to trimming are the adapters, meaning we expect an over abundance of specific k-mers at these initial positions along the read assuming not trimming). Programs like `FASTQC` will examine the distribution of k-mers along a standardized model of a read (i.e. 150 bp model, if that was the sequence length used), and create a plot to look at the most biased k-mers are where they are positioned along the model. 
+
+Here is a simple toy example to visualize this, consider 1000 50bp reads from a single samples with adapter still attached:
+
+```{r echo = FALSE}
+reads=1000
+seq_mat <- matrix(ncol=1,nrow=reads)
+adapter1 <- sample(c("A","T","C","G"),size=7,replace=TRUE)
+#adapter2 <- sample(c("A","T","C","G"),size=7,replace=TRUE)
+#adapter3 <- sample(c("A","T","C","G"),size=7,replace=TRUE)
+print(paste0("Adapter  : ",paste(adapter1,collapse='')))
+#print(paste0("Adapter 2 : ",paste(adapter1,collapse='')))
+#print(paste0("Adapter 3 : ",paste(adapter1,collapse='')))
+print("First 20 reads: ")
+for(i in 1:reads){
+  seq <- sample(c("A","T","C","G"),size=43,replace=TRUE)
+  seq_mat[i,1] <- paste0(c(adapter1,seq),collapse = '')
+  if(i < 20){print(paste0("Read: ",seq_mat[i,1]))}
+}
+```
+
+Lets look at the k-mer spectra (K=4)
+
+```{r echo=FALSE,message=FALSE}
+kmer=4 # k-mer length
+topK = 7 # Top bias k-mers
+output_mat <- matrix(nrow=nrow(seq_mat),ncol=nchar(seq_mat[1,1])-kmer+1)
+for(i in 1:nrow(seq_mat)){
+  output_mat[i,] <- kPos(seq_mat[i,1],kmer,verbose = FALSE)
+}
+summary_df <- data.frame(Pos=NULL,kmer=NULL,Obs=NULL,Log2Ratio=as.numeric(NULL))
+for(i in 1:ncol(output_mat)){
+  ob <- as.numeric(table(output_mat[,i]))
+  nm <- names(table(output_mat[,i]))
+  rt <- log2(ob/c(4^kmer))
+  y <- cbind(Pos=as.numeric(i-1),kmer=nm,Obs=ob,Log2Ratio=rt)
+  summary_df <- rbind(summary_df,y)
+}
+summary_df$Pos <- as.numeric(as.character(summary_df$Pos))
+summary_df$Log2Ratio <- as.numeric(as.character(summary_df$Log2Ratio))
+summary_df$kmer <- as.character(summary_df$kmer)
+summary_df$Obs <- as.numeric(as.character(summary_df$Obs))
+summary_df$Log2Ratio <- summary_df$Log2Ratio-min(summary_df$Log2Ratio)
+topCand <- summary_df[rev(order(summary_df$Obs))[1:topK],]
+total_comb <- expand.grid(Pos=c(1:length(unique(summary_df$Pos))),kmer=topCand$kmer)
+total_comb$kmer <- as.character(total_comb$kmer)
+comb <- left_join(total_comb,topCand,by=c("Pos","kmer"))
+comb[is.na(comb)] <- 0
+```
+
+**Plot of top 7 most biased k-mers**
+```{r echo = FALSE,fig.width=10}
+ggplot(comb,aes(Pos,Log2Ratio,colour=kmer)) + geom_line() +theme_cowplot() +
+  labs(x="Position (bp)",y="Log2 (Observed / Expected)",colour="Top K-mers")
+```
+
+Notice we see the most biased k-mers all occur within the first few bases of the read. This makes sense because in this toy dataset the random reads all contained a shared 7 bp adapter at the beginning of each read. In this case this doesn't mean there is any problems in our data, however, viewing the distribution of k-mers in this way can highlight other potential problems in our data, such as PCR bias or issues with pooling if multiple samples were run on the same lane of sequencing.
+
+
+
+
