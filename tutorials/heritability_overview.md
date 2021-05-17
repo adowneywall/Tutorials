@@ -13,14 +13,20 @@ Animal Model Introduction
     -   [Paper Discussions](#paper-discussions)
         -   [Wilson et al. 2010](#wilson-et-al-2010)
         -   [Thomson et al. 2018](#thomson-et-al-2018)
--   [Questions for oyster exposure to
-    OA](#questions-for-oyster-exposure-to-oa)
+-   [Example - C. virginica larval growth under OA from current and
+    future parent
+    exposures](#example---c-virginica-larval-growth-under-oa-from-current-and-future-parent-exposures)
     -   [Description](#description)
--   [Questions](#questions)
-    -   [Q1 - What is the heritability of larvae growth in *C.
-        virginica*?](#q1---what-is-the-heritability-of-larvae-growth-in-c-virginica)
-    -   [Q2 - Does parental methylation correspond with larval
-        growth?](#q2---does-parental-methylation-correspond-with-larval-growth)
+    -   [Main Experimental Factors](#main-experimental-factors)
+    -   [Questions](#questions)
+        -   [Stage 1 : What is the heritability of *C. virginica* larval
+            growth and what are the significant variance components that
+            determine larval growth variance in the animal
+            model?](#stage-1--what-is-the-heritability-of-c-virginica-larval-growth-and-what-are-the-significant-variance-components-that-determine-larval-growth-variance-in-the-animal-model)
+        -   [Preliminary Results](#preliminary-results)
+        -   [Stage 2 : What is the heritability of larval growth
+            plasticity to
+            OA?](#stage-2--what-is-the-heritability-of-larval-growth-plasticity-to-oa)
 
 # Overview
 
@@ -204,14 +210,18 @@ then an NA is used.
     components in the model?
 
 **Different Sources of Variation Effect Phenotype**
+
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/2018_Thomson_Fig1.png)
+
 **Similarity Matrices Incorporated As Random Effects**
+
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/2018_Thomson_Fig2.png)
 
 **Improved Partitioning Of Variance With More Effects**
+
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/2018_Thomson_Fig3.png)
 
-# Questions for oyster exposure to OA
+# Example - C. virginica larval growth under OA from current and future parent exposures
 
     ## Loading required package: Matrix
 
@@ -234,50 +244,85 @@ parental exposure to OA effects the evolutionary potential.
 
 *Larvae Growth as a function of offspring and parental treatment. A)
 Larval growth by offspring environmental pH. Boxes represent the 95%
-quantile for offspring, separated by parental treatment. B) Larval
-growth by offspring treatment (categorical). Boxes represent the 95%
-quantile for offspring.*
+quantile for offspring, separated by parental treatment. Boxes represent
+the 95% quantile for offspring.*
 
-# Questions
+## Main Experimental Factors
 
-### Q1 - What is the heritability of larvae growth in *C. virginica*?
+**Response Variable** \* Larval Growth
 
--   The main objective of this paper is to estimate heritability. This
-    is a numeric quantity that describes the proportion of total
-    phenotypic variation that is due to additive genetic variation and
-    thus describes how quickly a population can respond to a unit of
-    selection (Falconer & Mackay, 1996). Importantly, factors that can
-    impact phenotypic variation (e.g. the environment) are also expected
-    to influence estimates of heritability. Consequently, evaluating
-    heritability within the context of current and future environments
-    can give insights into the evolutionary potential of a phenotype.
--   In our experiment we were interested in examining larval growth
-    responses in ambient (i.e., current) and future OA conditions in
-    offspring created from parents that had or had not experienced OA.
+**Explanatory Variable** \* Offspring environment \* Parental
+environment \* Maternal effect (ID) \* Parental methylation fingerprint
 
-**Part A** - Does heritability of larval growth differ depending on the
+## Questions
+
+### Stage 1 : What is the heritability of *C. virginica* larval growth and what are the significant variance components that determine larval growth variance in the animal model?
+
+Taking a classic approach to trait variance and heritability - I take a
+look at larval growth of each individual separately. The effect of
+offspring environment is included as a random effect in the model
+(similar to how Thomson et al. 2018).
+
+**A** - Does heritability of larval growth differ depending on the
 larval and/or adult environment? If so, how does it differ among ambient
 and OA conditions and how does parental conditioning (i.e., exposure to
-OA) impact estimates of heritability? **Part B** - Is there evidence
-that plastic growth response (seen in Elises paper) are heritable? Does
-heritability of plasticity differ when parents are conditioned to OA?
+OA) impact estimates of heritability?
 
-### Q2 - Does parental methylation correspond with larval growth?
+-   **A1** - Estimate heritability for each parent and offspring
+    environment without parental methylation.
+    -   4 models - One for each parent-offspring treatment combination.
+    -   ![V\_{P} = V\_A](https://latex.codecogs.com/png.latex?V_%7BP%7D%20%3D%20V_A "V_{P} = V_A")
+-   **A2** - Estimate heritability for each parent environment without
+    parental methylation and include offspring environment as a random
+    effect.
+    -   2 models - One for each parent environment.
+    -   ![V\_{P} = V\_A + V\_{Off}](https://latex.codecogs.com/png.latex?V_%7BP%7D%20%3D%20V_A%20%2B%20V_%7BOff%7D "V_{P} = V_A + V_{Off}")
+-   **A3** - Estimate heritability without parental methylation and
+    include offspring environment as a random effect.
+    -   1 model
+    -   ![V\_P = V\_A + V\_{Off} + V\_{Par}](https://latex.codecogs.com/png.latex?V_P%20%3D%20V_A%20%2B%20V_%7BOff%7D%20%2B%20V_%7BPar%7D "V_P = V_A + V_{Off} + V_{Par}")
 
-**Part A** - Is parental methylation a significant explanatory variable
-in a linear mixed model that examines the effects of intergenerational
-OA exposure on larval growth?
+\*\*B\* - How does the inclusion of parental methylation impact
+estimates of heritability? Does parental methylation explain variation
+in phenotype that is not otherwise explained by either additive genetic
+variation or parental environment?
 
--   In this question we use a linear mixed model that includes a measure
-    of parental methylation as a covariate (fixed effect). The model
-    will be an extension of the model that was run by Elise in her
-    paper.
+-   **B1** - Estimate heritability with parental methylation and include
+    offspring environment as a random effect.
+    -   1 model
+    -   ![V\_P = V\_A + V\_{Off} + V\_{Par} + V\_{Epi}](https://latex.codecogs.com/png.latex?V_P%20%3D%20V_A%20%2B%20V_%7BOff%7D%20%2B%20V_%7BPar%7D%20%2B%20V_%7BEpi%7D "V_P = V_A + V_{Off} + V_{Par} + V_{Epi}")
+-   **B2** - Model comparison
+    -   Does the inclusion of DNA methylation effect estimates of
+        heritability?
+    -   Does including methylation significantly reduce the amount of
+        residual variation?
 
-**Part B** - Is parental methylation an important component for
-explaining variance in larvae growth using an animal model?
+### Preliminary Results
 
--   In this question we use the animal mode from Q1 with a measure of
-    parental DNA methylation included as a random effect similar to the
-    relatedness matrix or pedigree data used to represent additive
-    genetic variance. Support for this approach found in [Thomson et al
-    2018](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0197720).
+**Examples of variance components from the model when run as separate
+parent-offspring treatments**
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/L18_larvaeHeritability_F1.png)
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/L18_larvaeHeritability_F2.png)
+
+**Heritability and maternal effects for each parent-offspring
+combination**
+![](https://github.com/adowneywall/Tutorials/blob/master/img/L18_larvaeHeritability_F3.png)
+
+*Animal model was run in MCMCglmm with a number of different model
+parameterizations (x-axis). Overall, estimates were similar regardless
+of parameterization*
+
+### Stage 2 : What is the heritability of larval growth plasticity to OA?
+
+This is another way of thinking about the larval growth data. Rather
+than partitioning the variance of phenotype based on offspring
+environment as a random effect we can estimate family-level reaction
+norms using linear regression. The slope of this model would serve as
+the response variable inside the animal model. We could perform similar
+model testing as above (minus offspring environment). The downside of
+this approach is it compresses all of out individual observations into a
+single family observation (i.e., the slope of the regression), which
+substantially reduces our power. This approach is based on work done by
+Weiss et al 1990.
