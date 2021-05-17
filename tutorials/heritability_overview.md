@@ -6,13 +6,16 @@ Animal Model Introduction
         genetics](#origins-in-quantitative-genetics)
     -   [Animal model: Just a linear mixed
         model](#animal-model-just-a-linear-mixed-model)
-    -   [Calculating heritability (and porportional contribution of
+    -   [Calculating heritability (and the proportional contribution of
         other effects on phenotypic
-        variance)](#calculating-heritability-and-porportional-contribution-of-other-effects-on-phenotypic-variance)
+        variance)](#calculating-heritability-and-the-proportional-contribution-of-other-effects-on-phenotypic-variance)
     -   [Implications for heritability](#implications-for-heritability)
     -   [Paper Discussions](#paper-discussions)
         -   [Wilson et al. 2010](#wilson-et-al-2010)
-        -   [Thomson et al. 2018](#thomson-et-al-2018)
+        -   [Thomson et al. 2018 - A guide to using a multiple-matrix
+            animal model to disentangle genetic and nongenetic causes of
+            phenotypic
+            variance](#thomson-et-al-2018---a-guide-to-using-a-multiple-matrix-animal-model-to-disentangle-genetic-and-nongenetic-causes-of-phenotypic-variance)
 -   [Example - C. virginica larval growth under OA from current and
     future parent
     exposures](#example---c-virginica-larval-growth-under-oa-from-current-and-future-parent-exposures)
@@ -73,8 +76,7 @@ non-genetic effects (e.g., maternal or epigenetic) may also explain
 significant amounts of variation (more on this later).
 
 ![V\_A](https://latex.codecogs.com/png.latex?V_A "V_A") can be estimated
-using some measure of relatedness. Relatedness can be calculated in a
-couple of common ways:
+using a number of different approaches, including:
 
 1.  **Pedigree** - Using knowledge of the specific relationships among
     individuals within your population it is possible to construct a
@@ -83,9 +85,11 @@ couple of common ways:
     is possible to calculated the level of relatedness among individuals
     with your samples. For example, we expect parents and offspring to
     share half their genetic material or (r=0.5), while first cousins
-    are expected to share an eigth of their material (r=0.125). [Example
-    from Hoy lab](http://hoylab.cornell.edu/relatedness.html)
+    are expected to share an eighth of their material with each other
+    (r=0.125). [Example from Hoy
+    lab](http://hoylab.cornell.edu/relatedness.html)
 
+Example of a pedigree
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/pedigree.png)
 
 1.  **Kinship Matrix** - More recently SNP data has been used to
@@ -98,6 +102,7 @@ couple of common ways:
     matrix. For diploid organisms, 2 x the kinship matrix is the
     relatedness matrix.
 
+Example of an kinship matrix
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/kinship_matrix.png)
 
 ## Animal model: Just a linear mixed model
@@ -126,13 +131,28 @@ population mean for the population,
 and residual effects for individual
 ![i](https://latex.codecogs.com/png.latex?i "i"), respectively.
 
-Beyond the simple model, animal models are extremely flexible, as we saw
-in Thomson et al (2018). It is possible to add fixed effects (e.g., sex
+Beyond the simple model, animal models are extremely flexible (as we saw
+in Thomson et al (2018)). It is possible to add fixed effects (e.g., sex
 or age) and even additional random effects to account for specific
 sources of variation in your data (e.g., maternal ID or parental
-epigenetic finger print).
+epigenetic similarity matrix).
 
-## Calculating heritability (and porportional contribution of other effects on phenotypic variance)
+## Calculating heritability (and the proportional contribution of other effects on phenotypic variance)
+
+Calculating heritability is simply the proportion of phenotypic variance
+that is attributed to additive genetic variation:
+
+![\\frac{V\_A}{V\_P}](https://latex.codecogs.com/png.latex?%5Cfrac%7BV_A%7D%7BV_P%7D "\frac{V_A}{V_P}")
+
+Where ![V\_P](https://latex.codecogs.com/png.latex?V_P "V_P") is the sum
+of all all variance components in the model. **Note** A recent paper by
+[Villemereuil et
+al.](https://onlinelibrary.wiley.com/doi/full/10.1111/jeb.13232) argues
+for the inclusion of fixed effect estimates as well as random effects
+when calculating
+![V\_P](https://latex.codecogs.com/png.latex?V_P "V_P").
+
+**A note on heritabilities**
 
 There are two types of heritability, broad-sense and narrow-sense.
 
@@ -165,21 +185,37 @@ phenotype. High heritability may indicate the trait has a substantial
 potential to adaptive evolve, however, this is conditional on two main
 factors:
 
--   There is variation in the trait
-    -   Certain traits (such as the number of fingers on each hand) have
-        very high heritability, but since there is little to no trait
-        variation in most populations it will not adaptive evolve.
--   The trait needs to have fitness consequences
-    -   A trait may be heritable and exhibit some variation, but if
-        there is no selection on the trait (i.e., none zero effect on
-        fitness), then it will not adaptive evolve.
+1.  There is variation in the trait
+
+-   Certain traits (such as the number of fingers on each hand) have
+    very high heritability, but since there is little to no trait
+    variation in most populations it will not adaptive evolve.
+
+1.  The trait needs to have fitness consequences
+
+-   A trait may be heritable and exhibit some variation, but if there is
+    no selection on the trait (i.e.,small or 0 selection coefficient) it
+    will not adaptive evolve.
 
 The latter is not always easy to measure, so it is important to be
 careful how heritability is interpreted.
 
+------------------------------------------------------------------------
+
 ## Paper Discussions
 
 ### Wilson et al. 2010
+
+**Questions**
+
+1.  What is the main purpose of an animal model?
+2.  What does the measure of heritability actually mean?
+3.  How does it relate to evolution and adaptation?
+4.  What are some of the pitfalls when measuring heritability?
+5.  Why sort of insight can bivariate animal models provide?
+6.  Can animal models be used to predict evolution in future conditions?
+
+#### Important Figures
 
 **Figure 1 - Different visualizations for relatedness / pedigree**
 
@@ -191,16 +227,7 @@ single individual, and includes information about it’s parents. For
 parents in this table, or when the parents of an offspring are unknown
 then an NA is used.
 
-**Questions**
-
-1.  What is the main purpose of an animal model?
-2.  What does the measure of heritability actually mean?
-3.  How does it relate to evolution and adaptation?
-4.  What are some of the pitfalls when measuring heritability?
-5.  Why sort of insight can bivariate animal models provide?
-6.  Can animal models be used to predict evolution in future conditions?
-
-### Thomson et al. 2018
+### Thomson et al. 2018 - A guide to using a multiple-matrix animal model to disentangle genetic and nongenetic causes of phenotypic variance
 
 **Questions**
 
@@ -208,6 +235,8 @@ then an NA is used.
 2.  Why is considering non-genetic effects potentially important?
 3.  What do you notice about heritability when you include more
     components in the model?
+
+#### Important Figures
 
 **Different Sources of Variation Effect Phenotype**
 
@@ -220,6 +249,8 @@ then an NA is used.
 **Improved Partitioning Of Variance With More Effects**
 
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/2018_Thomson_Fig3.png)
+
+------------------------------------------------------------------------
 
 # Example - C. virginica larval growth under OA from current and future parent exposures
 
@@ -249,10 +280,16 @@ the 95% quantile for offspring.*
 
 ## Main Experimental Factors
 
-**Response Variable** \* Larval Growth
+**Response Variable**
 
-**Explanatory Variable** \* Offspring environment \* Parental
-environment \* Maternal effect (ID) \* Parental methylation fingerprint
+-   Larval Growth
+
+**Explanatory Variable**
+
+-   Offspring environment
+-   Parental environment
+-   Maternal effect (ID)
+-   Parental methylation fingerprint
 
 ## Questions
 
@@ -282,9 +319,9 @@ OA) impact estimates of heritability?
     -   1 model
     -   ![V\_P = V\_A + V\_{Off} + V\_{Par}](https://latex.codecogs.com/png.latex?V_P%20%3D%20V_A%20%2B%20V_%7BOff%7D%20%2B%20V_%7BPar%7D "V_P = V_A + V_{Off} + V_{Par}")
 
-\*\*B\* - How does the inclusion of parental methylation impact
-estimates of heritability? Does parental methylation explain variation
-in phenotype that is not otherwise explained by either additive genetic
+**B** - How does the inclusion of parental methylation impact estimates
+of heritability? Does parental methylation explain variation in
+phenotype that is not otherwise explained by either additive genetic
 variation or parental environment?
 
 -   **B1** - Estimate heritability with parental methylation and include

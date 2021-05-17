@@ -18,14 +18,16 @@ In its simplest form, a single trait in a quantitative genetics framework can be
 $$V_P = V_G + V_R$$
 Where $V_P$ is the variance of the phenotype, $V_G$ is the genetic variation, and $V_R$ is the residual (sometime called environmental) variation. From this model is it possible to estimate the amount of phenotypic variation due to genes (or genetic variation). Importantly, both sources of variation ($V_G$ and $V_R$) can be further partitioned. As an example, $V_G$ is frequently thought of has the combination of additive genetic variation ($V_A$), epistatic interactions ($V_{Ep}$), and dominance effects ($V_{D}$). Moreover, $V_R$ is really a catch-all for all phenotypic variance not explained by genetic variation. Some of this variance may be driven by environment, but other non-genetic effects (e.g., maternal or epigenetic) may also explain significant amounts of variation (more on this later). 
 
-$V_A$ can be estimated using some measure of relatedness. Relatedness can be calculated in a couple of common ways:
+$V_A$ can be estimated using a number of different approaches, including:
 
-1) **Pedigree** - Using knowledge of the specific relationships among individuals within your population it is possible to construct a pedigree. Along with specific expectations about the average transmission rate of genetic material from parent to offspring, it is possible to calculated the level of relatedness among individuals with your samples. For example, we expect parents and offspring to share half their genetic material or (r=0.5), while first cousins are expected to share an eigth of their material (r=0.125). [Example from Hoy lab](http://hoylab.cornell.edu/relatedness.html) 
+1) **Pedigree** - Using knowledge of the specific relationships among individuals within your population it is possible to construct a pedigree. Along with specific expectations about the average transmission rate of genetic material from parent to offspring, it is possible to calculated the level of relatedness among individuals with your samples. For example, we expect parents and offspring to share half their genetic material or (r=0.5), while first cousins are expected to share an eighth of their material with each other (r=0.125). [Example from Hoy lab](http://hoylab.cornell.edu/relatedness.html) 
 
+Example of a pedigree
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/pedigree.png)
 
 2) **Kinship Matrix** - More recently SNP data has been used to estimate kinship coefficients, a probabilistic estimate that a random allele from a given subject $i$ is identical-by-descent (ibd) to a allele in the same locus from a subject $j$. By generating pairwise estimates of kinship you can create a kinship matrix. For diploid organisms, 2 x the kinship matrix is the relatedness matrix.
 
+Example of an kinship matrix
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/kinship_matrix.png)
 
 ## Animal model: Just a linear mixed model 
@@ -35,9 +37,16 @@ Animal models are simply linear mixed models that (at a minimum) include a measu
 $$P_i = \mu + g_i + r_i$$
 Where $P_i$ is the phenotype for individual $i$, $\mu$ is the population mean for the population, $g_i$ and $r_i$ are the genetic and residual effects for individual $i$, respectively.
 
-Beyond the simple model, animal models are extremely flexible, as we saw in Thomson et al (2018). It is possible to add fixed effects (e.g., sex or age) and even additional random effects to account for specific sources of variation in your data (e.g., maternal ID or parental epigenetic finger print).
+Beyond the simple model, animal models are extremely flexible (as we saw in Thomson et al (2018)). It is possible to add fixed effects (e.g., sex or age) and even additional random effects to account for specific sources of variation in your data (e.g., maternal ID or parental epigenetic similarity matrix).
 
-## Calculating heritability (and porportional contribution of other effects on phenotypic variance)
+## Calculating heritability (and the proportional contribution of other effects on phenotypic variance)
+
+Calculating heritability is simply the proportion of phenotypic variance that is attributed to additive genetic variation:
+
+$$\frac{V_A}{V_P}$$
+Where $V_P$ is the sum of all all variance components in the model. **Note** A recent paper by [Villemereuil et al.](https://onlinelibrary.wiley.com/doi/full/10.1111/jeb.13232) argues for the inclusion of fixed effect estimates as well as random effects when calculating $V_P$.
+
+**A note on heritabilities**
 
 There are two types of heritability, broad-sense and narrow-sense. 
 
@@ -45,7 +54,6 @@ Broad-sense heritability is the proportion of phenotypic variance due to genetic
 $$\frac{V_G}{V_P}$$
 
 where $V_G$ contains additive $V_A$, dominance $V_D$, and epistatic effects $V_{Ep}$.
-
 
 While narrow-sense heritability is specifically the proportion of phenotypic variance that is due to additive genetic variance:
 $$\frac{V_A}{V_P}$$.
@@ -56,21 +64,18 @@ Relatedness matrices (and pedigree) are measures of additive genetic variation, 
 
 Heritability has implications for how efficiently selection can act on a phenotype. High heritability may indicate the trait has a substantial potential to adaptive evolve, however, this is conditional on two main factors:
 
-* There is variation in the trait
+1) There is variation in the trait
   * Certain traits (such as the number of fingers on each hand) have very high heritability, but since there is little to no trait variation in most populations it will not adaptive evolve.
-* The trait needs to have fitness consequences
-  * A trait may be heritable and exhibit some variation, but if there is no selection on the trait (i.e., none zero effect on fitness), then it will not adaptive evolve.
+2) The trait needs to have fitness consequences
+  * A trait may be heritable and exhibit some variation, but if there is no selection on the trait (i.e.,small or 0 selection coefficient) it will not adaptive evolve.
   
 The latter is not always easy to measure, so it is important to be careful how heritability is interpreted. 
+
+---
 
 ## Paper Discussions
 
 ### Wilson et al. 2010
-
-**Figure 1 - Different visualizations for relatedness / pedigree**
-
-![](https://github.com/adowneywall/Tutorials/blob/master/img/2010_Wilson_heritabilityIntro_Fig1.png)
-In (a) we have the classic pedigree tree, in (b) a relatedness matrix, and (c) an offspring-parent table. The offspring-parent table is a popular format for many animal model packages. Each row represents a single individual, and includes information about it's parents. For parents in this table, or when the parents of an offspring are unknown then an NA is used.
 
 **Questions**
 
@@ -81,13 +86,22 @@ In (a) we have the classic pedigree tree, in (b) a relatedness matrix, and (c) a
 5) Why sort of insight can bivariate animal models provide?
 6) Can animal models be used to predict evolution in future conditions?
 
-### Thomson et al. 2018
+#### Important Figures
+
+**Figure 1 - Different visualizations for relatedness / pedigree**
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/2010_Wilson_heritabilityIntro_Fig1.png)
+In (a) we have the classic pedigree tree, in (b) a relatedness matrix, and (c) an offspring-parent table. The offspring-parent table is a popular format for many animal model packages. Each row represents a single individual, and includes information about it's parents. For parents in this table, or when the parents of an offspring are unknown then an NA is used.
+
+### Thomson et al. 2018 - A guide to using a multiple-matrix animal model to disentangle genetic and nongenetic causes of phenotypic variance
 
 **Questions**
 
 1) What do the authors mean by non-genetic?
 2) Why is considering non-genetic effects potentially important?
 3) What do you notice about heritability when you include more components in the model?
+
+#### Important Figures
 
 **Different Sources of Variation Effect Phenotype**
 
@@ -101,6 +115,8 @@ In (a) we have the classic pedigree tree, in (b) a relatedness matrix, and (c) a
 **Improved Partitioning Of Variance With More Effects**
 
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/2018_Thomson_Fig3.png)
+
+---
 
 # Example - C. virginica larval growth under OA from current and future parent exposures
 
@@ -156,8 +172,8 @@ polyB <- rbind(polyC,polyE)
 polyB$ParentTrt <- as.factor(polyB$ParentTrt)
 ```
 
-```{r echo=F,fig.height=10,fig.width=10}
-(p1 <- ggplot(pheno,aes(y=GrowthPerDay,x=jarNum)) +
+```{r echo=F,fig.height=8,fig.width=10}
+p1 <- ggplot(pheno,aes(y=GrowthPerDay,x=jarNum)) +
   facet_grid(cols=vars(ParentTrt)) +
   geom_polygon(data=poly,aes(x,y,fill=ParentTrt),alpha=0.2) +
   geom_jitter(aes(colour=JarTrt),width = 0.01) + 
@@ -167,9 +183,9 @@ polyB$ParentTrt <- as.factor(polyB$ParentTrt)
         labels=c("Control", "Exposed"),limits = c(-0.5,1.5))  +
   scale_fill_manual(labels=c("Control","Exposed"),values=c("cadetblue","tomato")) + 
   labs(y="Larval Growth",x="Offspring Treatment","Larval") +
-  theme(axis.ticks.x = element_blank(),legend.position = "none",plot.title = element_text(hjust=0.5)))
+  theme(axis.ticks.x = element_blank(),legend.position = "none",plot.title = element_text(hjust=0.5))
 
-p2 <- ggplot(pheno,aes(y=GrowthPerDay,x=JarpHNBS,group=ParentTrt)) +
+(p2 <- ggplot(pheno,aes(y=GrowthPerDay,x=JarpHNBS,group=ParentTrt)) +
   #facet_grid(cols=vars(ParentTrt)) +
   geom_polygon(data=polyB,aes(x,y,fill=ParentTrt),alpha=0.1) +
   geom_point(aes(colour=JarTrt)) + 
@@ -181,7 +197,7 @@ p2 <- ggplot(pheno,aes(y=GrowthPerDay,x=JarpHNBS,group=ParentTrt)) +
   scale_linetype_manual(values=c("twodash", "dotted")) + 
   scale_colour_manual(labels=c("Control","Exposed"),values=c("cadetblue","tomato")) +
   labs(y="Larval Growth",x="Offspring Treatment (pH NBS)","Larval") +
-  theme(axis.ticks.x = element_blank(),plot.title = element_text(hjust=0.5))
+  theme(axis.ticks.x = element_blank(),plot.title = element_text(hjust=0.5)))
 
 #plot_grid(p2,p1,nrow = 2,rel_heights = c(0.6,0.4),labels = c("A","B"))
 ```
@@ -191,9 +207,11 @@ p2 <- ggplot(pheno,aes(y=GrowthPerDay,x=JarpHNBS,group=ParentTrt)) +
 ## Main Experimental Factors
 
 **Response Variable**
+
 * Larval Growth
 
 **Explanatory Variable**
+
 * Offspring environment
 * Parental environment
 * Maternal effect (ID)
@@ -217,7 +235,7 @@ Taking a classic approach to trait variance and heritability - I take a look at 
   * 1 model
   * $V_P = V_A + V_{Off} + V_{Par}$
   
-**B* - How does the inclusion of parental methylation impact estimates of heritability? Does parental methylation explain variation in phenotype that is not otherwise explained by either additive genetic variation or parental environment?
+**B** - How does the inclusion of parental methylation impact estimates of heritability? Does parental methylation explain variation in phenotype that is not otherwise explained by either additive genetic variation or parental environment?
 
 * **B1** - Estimate heritability with parental methylation and include offspring environment as a random effect.
   * 1 model
