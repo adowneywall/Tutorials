@@ -11,14 +11,19 @@ output:
 
 ## Origins in quantitative genetics
 
-The original goal of quantitative genetics is to make inferences about inheritance, evolutionary potential, and the genetic basis of a phenotype without explicit knowledge of the actual genetic loci involved (Wilson et al. 2010). This is possible through careful documentation of the relationships among individuals, whereby pedigrees can be constructed. Using pedigree data, when individuals that are more closely related are also phenotypically more similar than unrelated individuals we can infer that phenotypic variance is, in large part, genetically driven. Animal models represent a (relatively recent) approach for examining the genetic basis for phenotypic variance, utilizing a linear mixed model framework.
+A goal of quantitative genetics is to make inferences about inheritance, evolutionary potential, and the genetic basis of a phenotype without explicit knowledge of the actual genetic loci involved (Wilson et al. 2010). This is possible through careful documentation of the relationships among individuals, whereby pedigrees can be constructed. Using pedigree data, when individuals that are more closely related are also phenotypically more similar than unrelated individuals we can infer that phenotypic variance is, in large part, genetically driven. Animal models represent a (relatively recent) approach for examining the genetic basis for phenotypic variance, utilizing a linear mixed model framework.
 
 In its simplest form, a single trait in a quantitative genetics framework can be written as:
 
 $$V_P = V_G + V_R$$
-Where $V_P$ is the variance of the phenotype, $V_G$ is the genetic variation, and $V_R$ is the residual (sometime called environmental) variation. From this model is it possible to estimate the amount of phenotypic variation due to genes (or genetic variation). Importantly, both sources of variation ($V_G$ and $V_R$) can be further partitioned. As an example, $V_G$ is frequently thought of has the combination of additive genetic variation ($V_A$), epistatic interactions ($V_{Ep}$), and dominance effects ($V_{D}$). Moreover, $V_R$ is really a catch-all for all phenotypic variance not explained by genetic variation. Some of this variance may be driven by environment, but other non-genetic effects (e.g., maternal or epigenetic) may also explain significant amounts of variation (more on this later).
+Where $V_P$ is the variance of the phenotype, $V_G$ is the genetic variation, and $V_R$ is the residual (sometime called environmental) variation. From this model is it possible to estimate the amount of phenotypic variation due to genes (or genetic variation). Importantly, both sources of variation ($V_G$ and $V_R$) can be further partitioned. As an example, $V_G$ is frequently thought of has the combination of additive genetic variation ($V_A$), epistatic interactions ($V_{Ep}$), and dominance effects ($V_{D}$). Moreover, $V_R$ is really a catch-all for all phenotypic variance not explained by genetic variation. Some of this variance may be driven by environment, but other non-genetic effects (e.g., maternal or epigenetic) may also explain significant amounts of variation (more on this later). 
 
-## Animal model: just a linear mixed model 
+$V_A$ can be estimated using some measure of relatedness. Relatedness can be calculated in a couple of common ways:
+
+1) Pedigree - Using knowledge of the specific relationships among individuals within your population it is possible to construct a pedigree. Along with specific expectations about the average transmission rate of genetic material from parent to offspring, it is possible to calculated the level of relatedness among individuals with your samples. For example, we expect parents and offspring to share half their genetic material or (r=0.5), while first cousins are expected to share an eigth of their material (r=0.125). [Example from Hoy lab](http://hoylab.cornell.edu/relatedness.html) 
+2) Kinship Matrix - More recently SNP data has been used to estimated the kinship coefficient based on the concept that alleles can be identical-by-decent, and the number of SNPs shared among individals can be used to estimated how related they are to one another.
+
+## Animal model: Just a linear mixed model 
 
 Animal models are simply linear mixed models that (at a minimum) include pedigree or animal relatedness as a **random effect** in a linear mixed model. By fitting a simply linear mixed model with phenotype as the response variable and a relatedness (or animal) matrix as a random effect it is possible to decompose phenotypic variance into different genetic and environmental sources and to estimate key parameters such as the heritability of a trait or the genetic correlations between traits (e.g. Réale, Festa-Bianchet & Jorgenson 1999; Kruuk et al. 2000; Milner et al. 2000; Kruuk,Merila & Sheldon 2001; Garant et al. 2004; Wilson et al.2005; Gienapp, Postma & Visser 2006). The simplest model for this might look like:
 
@@ -32,14 +37,42 @@ Beyond the simple model, animal models are extremely flexible. It is possible to
 
 There are two types of heritability, broad-sense and narrow-sense. Broad-sense heritability is the proportion of phenotypic variance due to genetic variance ($\frac{V_G}{V_P}$), while narrow-sense heritability is specifically the proportion of phenotypic variance that is due to additive genetic variance ($\frac{V_A}{V_P}$). The later is what is often the focus of most animal model and 
 
+## Why treat effects as random?
 
+* Levels consist of random samples drawn from levels in an infinite large population.
+* Sample consists of a small subset of all possible values.
 
-### Paper Discussions
+## Paper Discussions
 
-#### Wilson et al. 2010
+### Wilson et al. 2010
 
 **Figure 1 - Different visualizations for relatedness / pedigree**
 
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/2010_Wilson_heritabilityIntro_Fig1.png)
+**Questions**
 
-#### Thomson et al. 2018
+1) What is the main purpose of an animal model?
+2) What does the measure of heritability actually mean?
+3) How does it relate to evolution and adaptation?
+4) What are some of the pitfalls when measuring heritability?
+5) Why sort of insight can bivariate animal models provide?
+6) Can animal models be used to predict evolution in future conditions?
+
+### Thomson et al. 2018
+
+**Questions**
+
+1) What do the authors mean by non-genetic?
+2) Why is considering non-genetic effects potentially important?
+3) 
+
+
+**Different Sources of Variation Effect Phenotype**
+![](https://github.com/adowneywall/Tutorials/blob/master/img/2018_Thomson_Fig1.png)
+**Similarity Matrices Incorporated As Random Effects**
+![](https://github.com/adowneywall/Tutorials/blob/master/img/2018_Thomson_Fig2.png)
+
+
+**Improved Partitioning Of Variance With More Effects**
+![](https://github.com/adowneywall/Tutorials/blob/master/img/2018_Thomson_Fig3.png)
+
