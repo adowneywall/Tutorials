@@ -11,7 +11,8 @@ Animal Model Introduction
         variance)](#calculating-heritability-and-the-proportional-contribution-of-other-effects-on-phenotypic-variance)
     -   [Implications for heritability](#implications-for-heritability)
     -   [Paper Discussions](#paper-discussions)
-        -   [Wilson et al. 2010](#wilson-et-al-2010)
+        -   [Wilson et al. 2010 - An ecologist’s guide to the animal
+            model](#wilson-et-al-2010---an-ecologists-guide-to-the-animal-model)
         -   [Thomson et al. 2018 - A guide to using a multiple-matrix
             animal model to disentangle genetic and nongenetic causes of
             phenotypic
@@ -27,9 +28,10 @@ Animal Model Introduction
             determine larval growth variance in the animal
             model?](#stage-1--what-is-the-heritability-of-c-virginica-larval-growth-and-what-are-the-significant-variance-components-that-determine-larval-growth-variance-in-the-animal-model)
         -   [Preliminary Results](#preliminary-results)
-        -   [Stage 2 : What is the heritability of larval growth
-            plasticity to
-            OA?](#stage-2--what-is-the-heritability-of-larval-growth-plasticity-to-oa)
+        -   [Stages 2 + 3 : What is the genetic correlation between
+            responses in current vs. future conditions? What is the
+            heritability of larval growth plasticity to
+            OA?](#stages-2--3--what-is-the-genetic-correlation-between-responses-in-current-vs-future-conditions-what-is-the-heritability-of-larval-growth-plasticity-to-oa)
 
 # Overview
 
@@ -104,6 +106,22 @@ Example of a pedigree
 
 Example of an kinship matrix
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/kinship_matrix.png)
+\#\#\# Additional components of phenotypic variance
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/2018_Thomson_Fig1.png)
+
+*From Thomson et al. 2018 - These can include additive genetic variation
+(![a](https://latex.codecogs.com/png.latex?a "a")), indirect effects
+(different maternal effects, maternal environment -
+![Mn](https://latex.codecogs.com/png.latex?Mn "Mn"), maternal genetic -
+![Ma](https://latex.codecogs.com/png.latex?Ma "Ma"), etc ), and direct
+effects (from environment,
+![n](https://latex.codecogs.com/png.latex?n "n"), to induced epigenetic
+effects, ![epi](https://latex.codecogs.com/png.latex?epi "epi"))*
+
+It is worth noting that many of these effects may covary with one or
+mutiple components, which can make attempts to disentangle the impact of
+each component on phenotypic variance challenging.
 
 ## Animal model: Just a linear mixed model
 
@@ -204,20 +222,27 @@ careful how heritability is interpreted.
 
 ## Paper Discussions
 
-### Wilson et al. 2010
+### Wilson et al. 2010 - An ecologist’s guide to the animal model
 
 **Questions**
 
 1.  What is the main purpose of an animal model?
 2.  What does the measure of heritability actually mean?
-3.  How does it relate to evolution and adaptation?
-4.  What are some of the pitfalls when measuring heritability?
-5.  Why sort of insight can bivariate animal models provide?
+3.  What are some of the pitfalls when measuring heritability?
+4.  What sort of insight can bivariate animal models provide?
+5.  How does it relate to evolution and adaptation?
 6.  Can animal models be used to predict evolution in future conditions?
 
 #### Important Figures
 
 **Figure 1 - Different visualizations for relatedness / pedigree**
+
+The way we represent individual similarity or relatedness can take many
+forms, from a classic pedigree to an
+![NxN](https://latex.codecogs.com/png.latex?NxN "NxN") relatedness
+matrix that shows how related individual
+![i](https://latex.codecogs.com/png.latex?i "i") is to individual
+![j](https://latex.codecogs.com/png.latex?j "j").
 
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/2010_Wilson_heritabilityIntro_Fig1.png)
 In (a) we have the classic pedigree tree, in (b) a relatedness matrix,
@@ -238,15 +263,26 @@ then an NA is used.
 
 #### Important Figures
 
-**Different Sources of Variation Effect Phenotype**
+**Thinking of components of phenotypic variances (random effects) as
+similarity matrices**
 
-![](https://github.com/adowneywall/Tutorials/blob/master/img/2018_Thomson_Fig1.png)
-
-**Similarity Matrices Incorporated As Random Effects**
+Thomson et al. (2018) re-introduce a concept by Danchin et al (2011),
+which aims at disentangling the main factors that contribute to
+phenoypic variance through the use of multiple matrices that account for
+different components that may contribute to phenotypic variance.
 
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/2018_Thomson_Fig2.png)
 
 **Improved Partitioning Of Variance With More Effects**
+
+By including additional components of variation we see that both
+additive genetic variation
+![a](https://latex.codecogs.com/png.latex?a "a") and residual variation
+![r](https://latex.codecogs.com/png.latex?r "r") components shrink. This
+has two implications: \* First, heritability decreases \* Second, more
+of the total phenotypic variance is now be explained by measured
+components of variation. In other words, we are better representing the
+sources of phenotypic variance with the measured variables in our model.
 
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/2018_Thomson_Fig3.png)
 
@@ -336,14 +372,18 @@ variation or parental environment?
 
 ### Preliminary Results
 
-**Examples of variance components from the model when run as separate
-parent-offspring treatments**
+**Relatedness Matrix**
+
+![](https://github.com/adowneywall/Tutorials/blob/master/img/L18_relatednessMatrix.png)
+
+**A1 - Examples of variance components from the model when run as
+separate parent-offspring treatments**
 
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/L18_larvaeHeritability_F1.png)
 
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/L18_larvaeHeritability_F2.png)
 
-**Heritability and maternal effects for each parent-offspring
+**A1 - Heritability and maternal effects for each parent-offspring
 combination**
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/L18_larvaeHeritability_F3.png)
 
@@ -351,15 +391,60 @@ combination**
 parameterizations (x-axis). Overall, estimates were similar regardless
 of parameterization*
 
-### Stage 2 : What is the heritability of larval growth plasticity to OA?
+#### Interpretation so far….
 
-This is another way of thinking about the larval growth data. Rather
-than partitioning the variance of phenotype based on offspring
-environment as a random effect we can estimate family-level reaction
-norms using linear regression. The slope of this model would serve as
-the response variable inside the animal model. We could perform similar
-model testing as above (minus offspring environment). The downside of
-this approach is it compresses all of out individual observations into a
-single family observation (i.e., the slope of the regression), which
-substantially reduces our power. This approach is based on work done by
-Weiss et al 1990.
+-   Heritability is low, but often none zero.
+    -   These values are consistent with heritability of growth observed
+        in other species (e.g., mussels in Sunday et al 2011).
+    -   Under certain selection scenarios (modeled in Sunday et
+        al. 2011) these heritabilities are sufficient to impact
+        evolutionary potential.
+-   Models appears to struggle deciding on the contribution of additive
+    genetic vs. maternal effects.
+-   Does appear to be some differences in heritability depending on
+    parent-offspring combination.
+
+#### Next Steps
+
+-   Next up is fitting more complex models that include treatment
+    (either parental, offspring, or both) as well as parental
+    methylation in the model and evaluating performance.
+
+1.  We know both parental environment and offspring environment have
+    significant effects from Elises model, but including them in the
+    model as random effects will allow us to specifically partition
+    phenotypic variation by both parental and offspring environments, to
+    examine the magnitude of an environmental effect vs. additive
+    genetic variation.
+
+### Stages 2 + 3 : What is the genetic correlation between responses in current vs. future conditions? What is the heritability of larval growth plasticity to OA?
+
+When considering heritability and selection acting on a trait in
+multiple environments (i.e., ambient and future OA conditions). There
+are two other related questions that are often asked:
+
+1.  What is the genetic covariance in a trait observed in multiple
+    conditions?
+2.  What is the selection on the reaction norm (plasticity of a trait)?
+
+Both questions are similar in that they are interested in understanding
+the performance of a phenotype in at least two environments. The first
+question can be addressed using a bivariate model described by Wilson et
+al 2010, whereby you include the same trait under different conditions
+as your response variables. While selection on the reaction norms may be
+performed in multiple ways, but one way is using linear regression to
+generate slopes (reaction norms) for trait performance across the
+different conditions. This slope can then be used in an animal model to
+examine the heritability of plasticity (see Weis et al. 1990 for
+example).
+
+The downside of these approaches:
+
+1.  In the bivariate model you should ideally have paired data (measures
+    of phenotype for the same individual across both environments)
+2.  When estimating plasticity at the family-level (our only option here
+    since we don’t have multiple phenotypes for the same individual) the
+    use of linear regression compresses all of our individual
+    observations into a single family observation (i.e., the slope of
+    the regression), which substantially reduces our power. This
+    approach is based on work done by Weiss et al 1990.
