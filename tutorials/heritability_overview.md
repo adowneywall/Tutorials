@@ -4,6 +4,8 @@ Animal Model Introduction
 -   [Overview](#overview)
     -   [Origins in quantitative
         genetics](#origins-in-quantitative-genetics)
+        -   [Additional components of phenotypic
+            variance](#additional-components-of-phenotypic-variance)
     -   [Animal model: Just a linear mixed
         model](#animal-model-just-a-linear-mixed-model)
     -   [Calculating heritability (and the proportional contribution of
@@ -92,6 +94,7 @@ using a number of different approaches, including:
     lab](http://hoylab.cornell.edu/relatedness.html)
 
 Example of a pedigree
+
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/pedigree.png)
 
 1.  **Kinship Matrix** - More recently SNP data has been used to
@@ -105,8 +108,10 @@ Example of a pedigree
     relatedness matrix.
 
 Example of an kinship matrix
+
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/kinship_matrix.png)
-\#\#\# Additional components of phenotypic variance
+
+### Additional components of phenotypic variance
 
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/2018_Thomson_Fig1.png)
 

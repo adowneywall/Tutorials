@@ -23,12 +23,18 @@ $V_A$ can be estimated using a number of different approaches, including:
 1) **Pedigree** - Using knowledge of the specific relationships among individuals within your population it is possible to construct a pedigree. Along with specific expectations about the average transmission rate of genetic material from parent to offspring, it is possible to calculated the level of relatedness among individuals with your samples. For example, we expect parents and offspring to share half their genetic material or (r=0.5), while first cousins are expected to share an eighth of their material with each other (r=0.125). [Example from Hoy lab](http://hoylab.cornell.edu/relatedness.html) 
 
 Example of a pedigree
+
+
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/pedigree.png)
 
 2) **Kinship Matrix** - More recently SNP data has been used to estimate kinship coefficients, a probabilistic estimate that a random allele from a given subject $i$ is identical-by-descent (ibd) to a allele in the same locus from a subject $j$. By generating pairwise estimates of kinship you can create a kinship matrix. For diploid organisms, 2 x the kinship matrix is the relatedness matrix.
 
 Example of an kinship matrix
+
+
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/kinship_matrix.png)
+
+
 ### Additional components of phenotypic variance
 
 ![](https://github.com/adowneywall/Tutorials/blob/master/img/2018_Thomson_Fig1.png) 
